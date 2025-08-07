@@ -138,8 +138,8 @@ class InactiveKickBot {
         this.levelChannels = new Map(); // guildId -> channelId
 
         // 설정
-        this.INACTIVE_THRESHOLD = 48 * 60 * 60 * 1000;
-        this.CHECK_INTERVAL = 30 * 60 * 1000;
+        this.INACTIVE_THRESHOLD = 10 * 1000; // 10초 (테스트용)
+        this.CHECK_INTERVAL = 30 * 1000; // 30초마다 체크 (테스트용)
 
         // 레벨 시스템 설정
         this.LEVEL_REQUIREMENTS = {
@@ -598,7 +598,7 @@ class InactiveKickBot {
             .setColor(0x00AE86)
             .addFields(
                 { name: '📊 서버 통계', value: `전체 멤버: ${totalMembers}명\n추적 중인 멤버: ${trackedMembers}명\n비활성 멤버: ${inactiveCount}명`, inline: true },
-                { name: '⚙️ 설정', value: `비활성 기준: 48시간\n체크 주기: 30분`, inline: true },
+                { name: '⚙️ 설정', value: `비활성 기준: 10초\n체크 주기: 30초`, inline: true },
                 { name: '🔒 제외 목록', value: `제외 사용자: ${exemptUserCount}명\n제외 역할: ${exemptRoleCount}개`, inline: true },
                 { name: '📈 레벨링 시스템', value: `레벨 사용자: ${levelUsersCount}명\n레벨 채널: ${levelChannel ? levelChannel.name : '설정 안됨'}`, inline: true }
             )
@@ -628,7 +628,7 @@ class InactiveKickBot {
         const embed = new EmbedBuilder()
             .setTitle('📖 비활성 사용자 강퇴 봇 도움말')
             .setColor(0x0099FF)
-            .setDescription('48시간 동안 활동하지 않은 사용자를 자동으로 강퇴하는 봇입니다.')
+            .setDescription('10초 동안 활동하지 않은 사용자를 자동으로 강퇴하는 봇입니다. (테스트 모드)')
             .addFields(
                 {
                     name: '👤 사용자 관리 (관리자)',
@@ -724,7 +724,7 @@ class InactiveKickBot {
 
         for (const userData of result.inactiveUsers) {
             try {
-                await userData.member.kick('48시간 이상 비활성으로 인한 자동 강퇴');
+                await userData.member.kick('10초 이상 비활성으로 인한 자동 강퇴 (테스트 모드)');
                 kickedUsers.push(userData);
                 
                 this.userActivity.delete(userData.member.id);
