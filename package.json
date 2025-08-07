@@ -1,0 +1,31 @@
+{
+  "name": "discord-inactive-kick-bot",
+  "version": "1.0.0",
+  "description": "48시간 비활성 사용자 자동 강퇴 디스코드 봇 (Render 웹서비스용)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "keep-alive": "node keep-alive.js"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "moderation",
+    "inactive",
+    "kick",
+    "render",
+    "webservice"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.14.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
